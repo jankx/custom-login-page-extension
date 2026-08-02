@@ -1,0 +1,17 @@
+{
+    "name": "Custom Login Page",
+    "version": "1.0.0",
+    "description": "Tùy chỉnh trang đăng nhập WordPress theo brand Nobitour.",
+    "author": "Jankx",
+    "extension_id": "custom-login-page",
+    "context": ["admin", "frontend"],
+    "caller": {
+        "file": "CustomLoginPageExtension.php",
+        "class": "Jankx\\Extensions\\CustomLoginPage\\CustomLoginPageExtension",
+        "method": "init"
+    },
+    "requirements": {
+        "php": ">=7.4"
+    },
+    "auto_activate": true
+}

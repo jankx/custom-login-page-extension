@@ -1,0 +1,175 @@
+/* Nobitour Custom Login Page */
+
+body.login {
+    background: linear-gradient(135deg, #FFFEF5 0%, #F5F5DC 100%) !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+body.login::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(101,163,13,0.03)"/><circle cx="75" cy="75" r="1" fill="rgba(101,163,13,0.03)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    pointer-events: none;
+    z-index: 0;
+}
+
+#login {
+    position: relative;
+    z-index: 1;
+}
+
+.login h1 {
+    margin-bottom: 30px;
+}
+
+.login h1 a {
+    width: 320px !important;
+    height: 80px !important;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+#loginform,
+.login .action-quick #loginform,
+body.login .login form {
+    background: #ffffff !important;
+    border: 1px solid rgba(0, 0, 0, 0.06) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06) !important;
+    padding: 30px 24px !important;
+}
+
+.login label {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #1A1F71 !important;
+    margin-bottom: 6px !important;
+}
+
+.login form .input,
+.login input[type="text"],
+.login input[type="password"] {
+    border: 1px solid #D1D5DB !important;
+    border-radius: 10px !important;
+    padding: 12px 14px !important;
+    font-size: 14px !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.login form .input:focus,
+.login input[type="text"]:focus,
+.login input[type="password"]:focus {
+    border-color: #65A30D !important;
+    box-shadow: 0 0 0 3px rgba(101, 163, 13, 0.15) !important;
+    outline: none !important;
+}
+
+.wp-core-ui .button-primary,
+.login .submit #wp-submit {
+    background: #65A30D !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 12px 24px !important;
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    text-transform: none !important;
+    box-shadow: 0 2px 8px rgba(101, 163, 13, 0.3) !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer !important;
+    width: 100% !important;
+}
+
+.wp-core-ui .button-primary:hover,
+.login .submit #wp-submit:hover {
+    background: #55890B !important;
+    box-shadow: 0 4px 12px rgba(101, 163, 13, 0.4) !important;
+    transform: translateY(-1px) !important;
+}
+
+.wp-core-ui .button-primary:active {
+    transform: translateY(0) !important;
+}
+
+.login .message,
+.login .success {
+    border: none !important;
+    border-left: 4px solid #65A30D !important;
+    border-radius: 8px !important;
+    background: rgba(101, 163, 13, 0.08) !important;
+    padding: 12px 16px !important;
+    color: #365314 !important;
+    font-size: 13px !important;
+}
+
+.login #login_error {
+    border: none !important;
+    border-left: 4px solid #E00501 !important;
+    border-radius: 8px !important;
+    background: rgba(224, 5, 1, 0.06) !important;
+    padding: 12px 16px !important;
+    color: #991B1B !important;
+    font-size: 13px !important;
+}
+
+.login #nav,
+.login #backtoblog {
+    text-align: center !important;
+}
+
+.login #nav a,
+.login #backtoblog a {
+    color: #65A30D !important;
+    text-decoration: none !important;
+    font-size: 13px !important;
+    transition: color 0.2s ease !important;
+}
+
+.login #nav a:hover,
+.login #backtoblog a:hover {
+    color: #365314 !important;
+    text-decoration: underline !important;
+}
+
+.login form .pw-weak {
+    border-radius: 8px !important;
+}
+
+.login .key-text,
+.login .code {
+    border-radius: 10px !important;
+}
+
+#jankx-login-footer {
+    color: #6B7280 !important;
+    font-size: 12px !important;
+    padding: 0 20px !important;
+}
+
+#jankx-login-footer a {
+    color: #65A30D !important;
+    text-decoration: none !important;
+}
+
+#jankx-login-footer a:hover {
+    text-decoration: underline !important;
+}
+
+@media screen and (max-width: 782px) {
+    body.login {
+        padding-top: 20px !important;
+    }
+
+    #login {
+        margin: 0 auto !important;
+        padding: 0 16px !important;
+    }
+
+    #loginform {
+        padding: 24px 20px !important;
+    }
+}
