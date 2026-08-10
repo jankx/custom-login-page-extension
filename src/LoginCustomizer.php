@@ -18,6 +18,10 @@ class LoginCustomizer
 
         // Redirect wp-login.php to custom login page
         add_action('init', [$this, 'redirectLoginPage']);
+
+        // Override login/register URLs site-wide
+        add_filter('login_url', [$this, 'filterLoginUrl'], 10, 2);
+        add_filter('registration_url', [$this, 'filterRegistrationUrl']);
     }
 
     public function enqueueAssets(): void
@@ -101,6 +105,36 @@ class LoginCustomizer
             wp_redirect($extension->getLoginPageUrl());
             exit;
         }
+    }
+
+    /**
+     * Filter login_url to point to custom login page
+     */
+    public function filterLoginUrl(string $loginUrl, string $redirect = ''): string
+    {
+        $extension = CustomLoginPageExtension::get_instance();
+        if (!$extension) {
+            return $loginUrl;
+        }
+
+        $customUrl = $extension->getLoginPageUrl();
+        if ($redirect) {
+            $customUrl = add_query_arg('redirect_to', urlencode($redirect), $customUrl);
+        }
+        return $customUrl;
+    }
+
+    /**
+     * Filter registration_url to point to custom register page
+     */
+    public function filterRegistrationUrl(): string
+    {
+        $extension = CustomLoginPageExtension::get_instance();
+        if (!$extension) {
+            return wp_registration_url();
+        }
+
+        return $extension->getRegisterPageUrl();
     }
 
     public function addCustomStyles(): void
