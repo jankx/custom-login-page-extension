@@ -82,7 +82,7 @@ class LoginFormBlock
             $output .= '<div class="jankx-form-error">' . esc_html($socialError) . '</div>';
         }
 
-        $output .= '<form name="loginform" id="jankx-loginform" action="' . esc_url(wp_login_url()) . '" method="post">';
+        $output .= '<form name="loginform" id="jankx-loginform" action="' . esc_url(home_url('/wp-login.php')) . '" method="post">';
 
         $loginRedirect = $redirectUrl ? $redirectUrl : home_url('/');
         $output .= '<input type="hidden" name="redirect_to" value="' . esc_url($loginRedirect) . '" />';
