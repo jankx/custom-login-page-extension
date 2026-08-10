@@ -1,0 +1,391 @@
+/* Nobitour Custom Login Page - Frontend Styles */
+
+/* Login Page Wrapper */
+.jankx-login-page-wrapper {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow: hidden;
+}
+
+/* Background */
+.jankx-login-page-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 65%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.jankx-login-page-bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.15) 100%);
+}
+
+/* Content Area */
+.jankx-login-page-content {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1;
+}
+
+.jankx-login-page-form-area {
+    width: 35%;
+    min-width: 420px;
+    max-width: 500px;
+    padding: 40px 48px;
+    background: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Brand */
+.jankx-login-page-brand {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.jankx-brand-name {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Login/Register Forms */
+.jankx-login-form-wrapper,
+.jankx-register-form-wrapper {
+    width: 100%;
+}
+
+.jankx-login-title,
+.jankx-register-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111827;
+    margin: 0 0 8px 0;
+}
+
+.jankx-login-subtitle,
+.jankx-register-subtitle {
+    font-size: 14px;
+    color: #6B7280;
+    margin: 0 0 24px 0;
+}
+
+.jankx-login-subtitle a,
+.jankx-register-subtitle a {
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.jankx-login-subtitle a:hover,
+.jankx-register-subtitle a:hover {
+    text-decoration: underline;
+}
+
+/* Form Fields */
+.jankx-form-group {
+    margin-bottom: 16px;
+}
+
+.jankx-form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.jankx-form-control {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+    border: 1px solid #D1D5DB;
+    border-radius: 10px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.jankx-form-control:focus {
+    outline: none;
+    border-color: #65A30D;
+    box-shadow: 0 0 0 3px rgba(101, 163, 13, 0.15);
+}
+
+.jankx-form-control::placeholder {
+    color: #9CA3AF;
+}
+
+/* Password Wrapper */
+.jankx-password-wrapper {
+    position: relative;
+}
+
+.jankx-password-wrapper .jankx-form-control {
+    padding-right: 44px;
+}
+
+.jankx-password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    color: #9CA3AF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.jankx-password-toggle:hover {
+    color: #6B7280;
+}
+
+/* Buttons */
+.jankx-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    text-align: center;
+    font-family: inherit;
+}
+
+.jankx-btn-primary {
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.jankx-btn-primary:hover {
+    opacity: 0.9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-1px);
+    color: #ffffff;
+}
+
+.jankx-btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Facebook Button */
+.jankx-btn-facebook {
+    background: #1877F2;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.jankx-btn-facebook:hover {
+    background: #166FE5;
+    color: #ffffff;
+}
+
+/* Google Button */
+.jankx-btn-google {
+    background: #EA4335;
+    color: #ffffff;
+}
+
+.jankx-btn-google:hover {
+    background: #D93025;
+    color: #ffffff;
+}
+
+/* Login Options */
+.jankx-login-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+.jankx-checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #374151;
+    cursor: pointer;
+}
+
+.jankx-checkbox-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.jankx-forgot-password {
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.jankx-forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Terms Checkbox */
+.jankx-terms-checkbox {
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+
+/* Social Divider */
+.jankx-social-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 24px 0;
+    color: #9CA3AF;
+    font-size: 14px;
+}
+
+.jankx-social-divider::before,
+.jankx-social-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.jankx-social-divider span {
+    padding: 0 16px;
+}
+
+/* Help Links */
+.jankx-login-help,
+.jankx-register-help {
+    text-align: center;
+    font-size: 14px;
+    color: #6B7280;
+    margin-top: 24px;
+}
+
+.jankx-login-help a,
+.jankx-register-help a {
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.jankx-login-help a:hover,
+.jankx-register-help a:hover {
+    text-decoration: underline;
+}
+
+/* Logged In Message */
+.jankx-logged-in-message {
+    text-align: center;
+    padding: 24px;
+}
+
+.jankx-logged-in-message p {
+    font-size: 16px;
+    color: #374151;
+    margin-bottom: 16px;
+}
+
+/* Footer */
+.jankx-login-page-footer {
+    text-align: center;
+    font-size: 12px;
+    color: #9CA3AF;
+    padding: 24px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive */
+@media screen and (max-width: 1200px) {
+    .jankx-login-page-bg {
+        width: 55%;
+    }
+
+    .jankx-login-page-form-area {
+        width: 45%;
+        min-width: 380px;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .jankx-login-page-bg {
+        width: 50%;
+    }
+
+    .jankx-login-page-form-area {
+        width: 50%;
+        min-width: 340px;
+        padding: 32px 40px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .jankx-login-page-wrapper {
+        flex-direction: column;
+    }
+
+    .jankx-login-page-bg {
+        position: relative;
+        width: 100%;
+        height: 300px;
+    }
+
+    .jankx-login-page-content {
+        justify-content: center;
+    }
+
+    .jankx-login-page-form-area {
+        width: 100%;
+        min-width: auto;
+        max-width: none;
+        min-height: auto;
+        padding: 32px 24px;
+    }
+}
+
+/* Form Error Styles */
+.jankx-form-error {
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    color: #991B1B;
+    font-size: 14px;
+}
+
+.jankx-form-success {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    color: #166534;
+    font-size: 14px;
+}

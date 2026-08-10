@@ -1,0 +1,44 @@
+{
+    "apiVersion": 3,
+    "name": "jankx/login-page",
+    "title": "Login Page",
+    "category": "jankx",
+    "icon": "lock",
+    "editorScript": "file:./build/index.tsx.js",
+    "attributes": {
+        "backgroundImage": {
+            "type": "string",
+            "default": ""
+        },
+        "backgroundImageId": {
+            "type": "number",
+            "default": 0
+        },
+        "pageType": {
+            "type": "string",
+            "default": "login",
+            "enum": ["login", "register"]
+        },
+        "brandName": {
+            "type": "string",
+            "default": "NOBITOUR"
+        },
+        "brandColor": {
+            "type": "string",
+            "default": "#65A30D"
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": ["full"],
+        "spacing": {
+            "margin": true,
+            "padding": true
+        }
+    },
+    "editorStyles": [
+        {
+            "src": "file:./build/style.css"
+        }
+    ]
+}

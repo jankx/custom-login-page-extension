@@ -1,10 +1,10 @@
 {
     "name": "Custom Login Page",
-    "version": "1.0.0",
-    "description": "Tùy chỉnh trang đăng nhập WordPress theo brand Nobitour.",
+    "version": "2.0.0",
+    "description": "Tùy chỉnh trang đăng nhập và đăng ký WordPress theo brand Nobitour với Gutenberg blocks.",
     "author": "Jankx",
     "extension_id": "custom-login-page",
-    "context": ["admin", "frontend"],
+    "context": ["admin", "frontend", "rest"],
     "caller": {
         "file": "CustomLoginPageExtension.php",
         "class": "Jankx\\Extensions\\CustomLoginPage\\CustomLoginPageExtension",

@@ -1,0 +1,58 @@
+{
+    "apiVersion": 3,
+    "name": "jankx/login-form",
+    "title": "Login Form",
+    "category": "jankx",
+    "icon": "forms",
+    "editorScript": "file:./build/index.tsx.js",
+    "parent": ["jankx/login-page"],
+    "attributes": {
+        "brandName": {
+            "type": "string",
+            "default": "NOBITOUR"
+        },
+        "brandColor": {
+            "type": "string",
+            "default": "#65A30D"
+        },
+        "showFacebookLogin": {
+            "type": "boolean",
+            "default": true
+        },
+        "showGoogleLogin": {
+            "type": "boolean",
+            "default": true
+        },
+        "showRememberMe": {
+            "type": "boolean",
+            "default": true
+        },
+        "showForgotPassword": {
+            "type": "boolean",
+            "default": true
+        },
+        "registerPageUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "forgotPasswordUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "contactUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "redirectUrl": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "supports": {
+        "html": false,
+        "spacing": {
+            "margin": true,
+            "padding": true
+        }
+    }
+}

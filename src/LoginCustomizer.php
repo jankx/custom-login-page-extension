@@ -13,6 +13,11 @@ class LoginCustomizer
         add_filter('login_headertext', [$this, 'setLogoTitle']);
         add_filter('login_title', [$this, 'setLoginPageTitle']);
         add_action('login_footer', [$this, 'renderCustomFooter']);
+
+        add_action('wp_enqueue_scripts', [$this, 'enqueueFrontendAssets']);
+
+        // Redirect wp-login.php to custom login page
+        add_action('init', [$this, 'redirectLoginPage']);
     }
 
     public function enqueueAssets(): void
@@ -35,6 +40,50 @@ class LoginCustomizer
                 '.login h1 a { background-image: url("%s") !important; }',
                 esc_url($logoUrl)
             ));
+        }
+    }
+
+    public function enqueueFrontendAssets(): void
+    {
+        $extension = CustomLoginPageExtension::get_instance();
+        if (!$extension) {
+            return;
+        }
+
+        wp_enqueue_style(
+            'jankx-login-frontend',
+            $extension->get_extension_url() . '/assets/frontend.css',
+            [],
+            '1.0.0'
+        );
+
+        wp_enqueue_script(
+            'jankx-login-frontend',
+            $extension->get_extension_url() . '/assets/frontend.js',
+            [],
+            '1.0.0',
+            true
+        );
+    }
+
+    public function redirectLoginPage(): void
+    {
+        // Only redirect on wp-login.php
+        if (!defined('DOING_LOGIN') && !isset($_GET['login'])) {
+            // Check if we're on wp-login.php
+            $requestUri = $_SERVER['REQUEST_URI'] ?? '';
+            if (strpos($requestUri, 'wp-login.php') !== false) {
+                // Don't redirect AJAX requests
+                if (defined('DOING_AJAX') && DOING_AJAX) {
+                    return;
+                }
+
+                $extension = CustomLoginPageExtension::get_instance();
+                if ($extension) {
+                    wp_redirect($extension->getLoginPageUrl());
+                    exit;
+                }
+            }
         }
     }
 
