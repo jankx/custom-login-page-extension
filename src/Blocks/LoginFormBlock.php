@@ -67,7 +67,7 @@ class LoginFormBlock
         }
         $output .= '</p>';
 
-        $output .= '<form name="loginform" id="jankx-loginform" action="' . esc_url(home_url('/wp-login.php')) . '" method="post">';
+        $output .= '<form name="loginform" id="jankx-loginform" action="' . esc_url(wp_login_url()) . '" method="post">';
 
         $loginRedirect = $redirectUrl ? $redirectUrl : home_url('/');
         $output .= '<input type="hidden" name="redirect_to" value="' . esc_url($loginRedirect) . '" />';
@@ -92,7 +92,7 @@ class LoginFormBlock
             esc_attr($brandColor)
         );
 
-        wp_nonce_field('jankx_login_form', 'jankx_login_nonce');
+        wp_nonce_field('login');
 
         if ($showRememberMe || $showForgotPassword) {
             $output .= '<div class="jankx-login-options">';

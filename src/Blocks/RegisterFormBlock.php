@@ -65,6 +65,7 @@ class RegisterFormBlock
         $output .= '</p>';
 
         $output .= '<form name="registerform" id="jankx-registerform" action="' . esc_url(home_url('/wp-login.php?action=register')) . '" method="post">';
+        $output .= '<input type="hidden" name="redirect_to" value="' . esc_url(home_url('/')) . '" />';
 
         $output .= '<div class="jankx-form-group">';
         $output .= '<label for="reg_name">Họ và tên</label>';
@@ -108,7 +109,7 @@ class RegisterFormBlock
             esc_attr($brandColor)
         );
 
-        wp_nonce_field('jankx_register_form', 'jankx_register_nonce');
+        wp_nonce_field('user-register');
 
         if ($showTermsCheckbox) {
             $output .= '<div class="jankx-terms-checkbox">';

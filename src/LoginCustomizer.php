@@ -68,22 +68,38 @@ class LoginCustomizer
 
     public function redirectLoginPage(): void
     {
-        // Only redirect on wp-login.php
-        if (!defined('DOING_LOGIN') && !isset($_GET['login'])) {
-            // Check if we're on wp-login.php
-            $requestUri = $_SERVER['REQUEST_URI'] ?? '';
-            if (strpos($requestUri, 'wp-login.php') !== false) {
-                // Don't redirect AJAX requests
-                if (defined('DOING_AJAX') && DOING_AJAX) {
-                    return;
-                }
+        // Don't redirect AJAX requests
+        if (defined('DOING_AJAX') && DOING_AJAX) {
+            return;
+        }
 
-                $extension = CustomLoginPageExtension::get_instance();
-                if ($extension) {
-                    wp_redirect($extension->getLoginPageUrl());
-                    exit;
-                }
-            }
+        // Don't redirect POST requests (form submissions)
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            return;
+        }
+
+        // Check if we're on wp-login.php
+        $requestUri = $_SERVER['REQUEST_URI'] ?? '';
+        if (strpos($requestUri, 'wp-login.php') === false) {
+            return;
+        }
+
+        // Don't redirect logout, register, lostpassword, resetpassword actions
+        $action = isset($_GET['action']) ? sanitize_text_field($_GET['action']) : '';
+        $allowedActions = ['logout', 'register', 'lostpassword', 'resetpass', 'rp', 'confirmaction'];
+        if (in_array($action, $allowedActions)) {
+            return;
+        }
+
+        // Don't redirect if doing login (form submitted)
+        if (defined('DOING_LOGIN') && DOING_LOGIN) {
+            return;
+        }
+
+        $extension = CustomLoginPageExtension::get_instance();
+        if ($extension) {
+            wp_redirect($extension->getLoginPageUrl());
+            exit;
         }
     }
 
