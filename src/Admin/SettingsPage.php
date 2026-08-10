@@ -68,6 +68,37 @@ class SettingsPage
             'default' => 0,
             'sanitize_callback' => 'absint',
         ]);
+
+        // Social Login Settings
+        register_setting(self::OPTION_GROUP, 'jankx_social_facebook_app_id', [
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ]);
+
+        register_setting(self::OPTION_GROUP, 'jankx_social_facebook_app_secret', [
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ]);
+
+        register_setting(self::OPTION_GROUP, 'jankx_social_google_client_id', [
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ]);
+
+        register_setting(self::OPTION_GROUP, 'jankx_social_google_client_secret', [
+            'default' => '',
+            'sanitize_callback' => 'sanitize_text_field',
+        ]);
+
+        register_setting(self::OPTION_GROUP, 'jankx_social_enable_facebook', [
+            'default' => 0,
+            'sanitize_callback' => 'absint',
+        ]);
+
+        register_setting(self::OPTION_GROUP, 'jankx_social_enable_google', [
+            'default' => 0,
+            'sanitize_callback' => 'absint',
+        ]);
     }
 
     public function enqueueAssets(string $hook): void
@@ -273,6 +304,117 @@ class SettingsPage
                 </table>
 
                 <?php submit_button(__('Save Settings', 'jankx')); ?>
+            </form>
+
+            <!-- Social Login Settings -->
+            <form method="post" action="options.php" style="max-width: 700px; margin-top: 20px;">
+                <?php settings_fields(self::OPTION_GROUP); ?>
+
+                <h2><?php esc_html_e('Social Login Settings', 'jankx'); ?></h2>
+                <p class="description"><?php esc_html_e('Cấu hình đăng nhập qua Facebook và Google.', 'jankx'); ?></p>
+
+                <table class="form-table">
+                    <tr>
+                        <th scope="row">
+                            <label for="jankx_social_enable_facebook"><?php esc_html_e('Enable Facebook Login', 'jankx'); ?></label>
+                        </th>
+                        <td>
+                            <input type="checkbox"
+                                   id="jankx_social_enable_facebook"
+                                   name="jankx_social_enable_facebook"
+                                   value="1"
+                                   <?php checked(get_option('jankx_social_enable_facebook', 0), 1); ?>>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            <label for="jankx_social_facebook_app_id"><?php esc_html_e('Facebook App ID', 'jankx'); ?></label>
+                        </th>
+                        <td>
+                            <input type="text"
+                                   id="jankx_social_facebook_app_id"
+                                   name="jankx_social_facebook_app_id"
+                                   value="<?php echo esc_attr(get_option('jankx_social_facebook_app_id', '')); ?>"
+                                   class="regular-text"
+                                   placeholder="123456789">
+                            <p class="description">
+                                <?php esc_html_e('Tạo app tại', 'jankx'); ?>
+                                <a href="https://developers.facebook.com/apps/" target="_blank">Facebook Developers</a>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            <label for="jankx_social_facebook_app_secret"><?php esc_html_e('Facebook App Secret', 'jankx'); ?></label>
+                        </th>
+                        <td>
+                            <input type="password"
+                                   id="jankx_social_facebook_app_secret"
+                                   name="jankx_social_facebook_app_secret"
+                                   value="<?php echo esc_attr(get_option('jankx_social_facebook_app_secret', '')); ?>"
+                                   class="regular-text">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            <label for="jankx_social_enable_google"><?php esc_html_e('Enable Google Login', 'jankx'); ?></label>
+                        </th>
+                        <td>
+                            <input type="checkbox"
+                                   id="jankx_social_enable_google"
+                                   name="jankx_social_enable_google"
+                                   value="1"
+                                   <?php checked(get_option('jankx_social_enable_google', 0), 1); ?>>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            <label for="jankx_social_google_client_id"><?php esc_html_e('Google Client ID', 'jankx'); ?></label>
+                        </th>
+                        <td>
+                            <input type="text"
+                                   id="jankx_social_google_client_id"
+                                   name="jankx_social_google_client_id"
+                                   value="<?php echo esc_attr(get_option('jankx_social_google_client_id', '')); ?>"
+                                   class="regular-text"
+                                   placeholder="123456789.apps.googleusercontent.com">
+                            <p class="description">
+                                <?php esc_html_e('Tạo project tại', 'jankx'); ?>
+                                <a href="https://console.cloud.google.com/apis/credentials" target="_blank">Google Cloud Console</a>
+                            </p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            <label for="jankx_social_google_client_secret"><?php esc_html_e('Google Client Secret', 'jankx'); ?></label>
+                        </th>
+                        <td>
+                            <input type="password"
+                                   id="jankx_social_google_client_secret"
+                                   name="jankx_social_google_client_secret"
+                                   value="<?php echo esc_attr(get_option('jankx_social_google_client_secret', '')); ?>"
+                                   class="regular-text">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row"><?php esc_html_e('Callback URLs', 'jankx'); ?></th>
+                        <td>
+                            <p class="description"><?php esc_html_e('Thêm các URL sau vào redirect URI của app:', 'jankx'); ?></p>
+                            <code style="display: block; margin-top: 8px; padding: 8px; background: #f1f1f1;">
+                                <?php echo esc_html(home_url('/social-login/facebook')); ?><br>
+                                <?php echo esc_html(home_url('/social-login/google')); ?>
+                            </code>
+                        </td>
+                    </tr>
+                </table>
+
+                <?php submit_button(__('Save Social Settings', 'jankx')); ?>
             </form>
 
             <div style="margin-top: 40px; padding: 20px; background: #fff; border: 1px solid #e2e4e7; border-radius: 8px; max-width: 700px;">

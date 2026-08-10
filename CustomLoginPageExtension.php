@@ -48,6 +48,9 @@ class CustomLoginPageExtension extends AbstractExtension
         $customizer = new LoginCustomizer();
         $customizer->register();
 
+        $socialLogin = new SocialLogin();
+        $socialLogin->register();
+
         if (is_admin()) {
             $settingsPage = new \Jankx\Extensions\CustomLoginPage\Admin\SettingsPage();
             $settingsPage->register();
