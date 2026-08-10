@@ -1,8 +1,20 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, InnerBlocks, MediaUpload, MediaUploadCheck, ColorPicker } from '@wordpress/block-editor';
-import { Button, TextControl, ToggleControl, PanelBody, SelectControl } from '@wordpress/components';
+import { useBlockProps, InnerBlocks, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
+import { Button, TextControl, ToggleControl, PanelBody, SelectControl, ColorPicker } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import metadata from '../block.json';
+
+function Save({ attributes }) {
+    const blockProps = useBlockProps.save({
+        className: 'jankx-login-page-wrapper',
+    });
+
+    return (
+        <div {...blockProps} data-page-type={attributes.pageType || 'login'}>
+            <InnerBlocks.Content />
+        </div>
+    );
+}
 
 function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps({
@@ -102,5 +114,5 @@ function Edit({ attributes, setAttributes }) {
 registerBlockType(metadata.name, {
     ...metadata,
     edit: Edit,
-    save: () => null,
+    save: Save,
 });
