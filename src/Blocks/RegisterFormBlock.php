@@ -39,55 +39,71 @@ class RegisterFormBlock
         $loginPageUrl = $attributes['loginPageUrl'] ?? '';
         $contactUrl = $attributes['contactUrl'] ?? '';
 
+        // Text attributes
+        $registerTitle = $attributes['registerTitle'] ?? 'Đăng ký';
+        $registerSubtitle = $attributes['registerSubtitle'] ?? 'Bạn đã có tài khoản? ';
+        $registerSubtitleLinkText = $attributes['registerSubtitleLinkText'] ?? 'Đăng nhập';
+        $registerButtonText = $attributes['registerButtonText'] ?? 'Đăng ký';
+        $nameLabel = $attributes['nameLabel'] ?? 'Họ và tên';
+        $namePlaceholder = $attributes['namePlaceholder'] ?? 'Nhập họ tên';
+        $emailLabel = $attributes['emailLabel'] ?? 'Email';
+        $emailPlaceholder = $attributes['emailPlaceholder'] ?? 'Nhập địa chỉ email';
+        $phoneLabel = $attributes['phoneLabel'] ?? 'Số điện thoại';
+        $phonePlaceholder = $attributes['phonePlaceholder'] ?? 'Nhập số điện thoại';
+        $passwordLabel = $attributes['passwordLabel'] ?? 'Mật khẩu';
+        $passwordPlaceholder = $attributes['passwordPlaceholder'] ?? 'Nhập mật khẩu';
+        $confirmPasswordLabel = $attributes['confirmPasswordLabel'] ?? 'Nhập lại mật khẩu';
+        $confirmPasswordPlaceholder = $attributes['confirmPasswordPlaceholder'] ?? 'Nhập mật khẩu';
+        $termsText = $attributes['termsText'] ?? 'Tôi đã đọc và đồng ý với ';
+        $termsLinkText = $attributes['termsLinkText'] ?? 'điều khoản dịch vụ';
+        $helpText = $attributes['helpText'] ?? 'Cần giúp đỡ? ';
+        $helpLinkText = $attributes['helpLinkText'] ?? 'Liên hệ với chúng tôi';
+        $loggedInMessage = $attributes['loggedInMessage'] ?? 'Bạn đã đăng nhập.';
+        $loggedInButtonText = $attributes['loggedInButtonText'] ?? 'Vào trang quản trị';
+
         if (is_user_logged_in()) {
-            return $this->renderLoggedInState($brandColor);
+            return $this->renderLoggedInState($brandColor, $loggedInMessage, $loggedInButtonText);
         }
 
         $output = '<div class="jankx-register-form-wrapper">';
 
-        $output .= '<h2 class="jankx-register-title">Đăng ký</h2>';
+        $output .= '<h2 class="jankx-register-title">' . esc_html($registerTitle) . '</h2>';
 
         $output .= '<p class="jankx-register-subtitle">';
-        $output .= 'Bạn đã có tài khoản? ';
-        if ($loginPageUrl) {
-            $output .= sprintf(
-                '<a href="%s" style="color: %s;">Đăng nhập</a>',
-                esc_url($loginPageUrl),
-                esc_attr($brandColor)
-            );
-        } else {
-            $output .= sprintf(
-                '<a href="%s" style="color: %s;">Đăng nhập</a>',
-                esc_url(wp_login_url()),
-                esc_attr($brandColor)
-            );
-        }
+        $output .= esc_html($registerSubtitle);
+        $loginUrl = $loginPageUrl ?: wp_login_url();
+        $output .= sprintf(
+            '<a href="%s" style="color: %s;">%s</a>',
+            esc_url($loginUrl),
+            esc_attr($brandColor),
+            esc_html($registerSubtitleLinkText)
+        );
         $output .= '</p>';
 
         $output .= '<form name="registerform" id="jankx-registerform" action="' . esc_url(home_url('/wp-login.php?action=register')) . '" method="post">';
         $output .= '<input type="hidden" name="redirect_to" value="' . esc_url(home_url('/')) . '" />';
 
         $output .= '<div class="jankx-form-group">';
-        $output .= '<label for="reg_name">Họ và tên</label>';
-        $output .= '<input type="text" name="user_name" id="reg_name" class="jankx-form-control" placeholder="Nhập họ tên" autocomplete="name" required />';
+        $output .= '<label for="reg_name">' . esc_html($nameLabel) . '</label>';
+        $output .= '<input type="text" name="user_name" id="reg_name" class="jankx-form-control" placeholder="' . esc_attr($namePlaceholder) . '" autocomplete="name" required />';
         $output .= '</div>';
 
         $output .= '<div class="jankx-form-group">';
-        $output .= '<label for="reg_email">Email</label>';
-        $output .= '<input type="email" name="user_email" id="reg_email" class="jankx-form-control" placeholder="Nhập địa chỉ email" autocomplete="email" required />';
+        $output .= '<label for="reg_email">' . esc_html($emailLabel) . '</label>';
+        $output .= '<input type="email" name="user_email" id="reg_email" class="jankx-form-control" placeholder="' . esc_attr($emailPlaceholder) . '" autocomplete="email" required />';
         $output .= '</div>';
 
         if ($showPhoneField) {
             $output .= '<div class="jankx-form-group">';
-            $output .= '<label for="reg_phone">Số điện thoại</label>';
-            $output .= '<input type="tel" name="user_phone" id="reg_phone" class="jankx-form-control" placeholder="Nhập số điện thoại" autocomplete="tel" />';
+            $output .= '<label for="reg_phone">' . esc_html($phoneLabel) . '</label>';
+            $output .= '<input type="tel" name="user_phone" id="reg_phone" class="jankx-form-control" placeholder="' . esc_attr($phonePlaceholder) . '" autocomplete="tel" />';
             $output .= '</div>';
         }
 
         $output .= '<div class="jankx-form-group">';
-        $output .= '<label for="reg_pass">Mật khẩu</label>';
+        $output .= '<label for="reg_pass">' . esc_html($passwordLabel) . '</label>';
         $output .= '<div class="jankx-password-wrapper">';
-        $output .= '<input type="password" name="user_pass" id="reg_pass" class="jankx-form-control" placeholder="Nhập mật khẩu" autocomplete="new-password" required />';
+        $output .= '<input type="password" name="user_pass" id="reg_pass" class="jankx-form-control" placeholder="' . esc_attr($passwordPlaceholder) . '" autocomplete="new-password" required />';
         $output .= '<button type="button" class="jankx-password-toggle" onclick="jankxTogglePassword(this)">';
         $output .= '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
         $output .= '</button>';
@@ -95,9 +111,9 @@ class RegisterFormBlock
         $output .= '</div>';
 
         $output .= '<div class="jankx-form-group">';
-        $output .= '<label for="reg_pass2">Nhập lại mật khẩu</label>';
+        $output .= '<label for="reg_pass2">' . esc_html($confirmPasswordLabel) . '</label>';
         $output .= '<div class="jankx-password-wrapper">';
-        $output .= '<input type="password" name="user_pass2" id="reg_pass2" class="jankx-form-control" placeholder="Nhập mật khẩu" autocomplete="new-password" required />';
+        $output .= '<input type="password" name="user_pass2" id="reg_pass2" class="jankx-form-control" placeholder="' . esc_attr($confirmPasswordPlaceholder) . '" autocomplete="new-password" required />';
         $output .= '<button type="button" class="jankx-password-toggle" onclick="jankxTogglePassword(this)">';
         $output .= '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>';
         $output .= '</button>';
@@ -105,8 +121,9 @@ class RegisterFormBlock
         $output .= '</div>';
 
         $output .= sprintf(
-            '<button type="submit" name="wp-submit" class="jankx-btn jankx-btn-primary" style="background: %s;">Đăng ký</button>',
-            esc_attr($brandColor)
+            '<button type="submit" name="wp-submit" class="jankx-btn jankx-btn-primary" style="background: %s;">%s</button>',
+            esc_attr($brandColor),
+            esc_html($registerButtonText)
         );
 
         wp_nonce_field('user-register');
@@ -116,11 +133,11 @@ class RegisterFormBlock
             $output .= '<label class="jankx-checkbox-label">';
             $output .= '<input type="checkbox" name="agree_terms" value="1" required />';
             $output .= '<span class="jankx-checkbox-custom"></span>';
-            $output .= 'Tôi đã đọc và đồng ý với ';
+            $output .= esc_html($termsText);
             if ($termsPageUrl) {
-                $output .= '<a href="' . esc_url($termsPageUrl) . '" style="color: ' . esc_attr($brandColor) . ';">điều khoản dịch vụ</a>';
+                $output .= '<a href="' . esc_url($termsPageUrl) . '" style="color: ' . esc_attr($brandColor) . ';">' . esc_html($termsLinkText) . '</a>';
             } else {
-                $output .= 'điều khoản dịch vụ';
+                $output .= esc_html($termsLinkText);
             }
             $output .= '</label>';
             $output .= '</div>';
@@ -130,7 +147,7 @@ class RegisterFormBlock
 
         if ($contactUrl) {
             $output .= '<div class="jankx-register-help">';
-            $output .= 'Cần giúp đỡ? <a href="' . esc_url($contactUrl) . '" style="color: ' . esc_attr($brandColor) . ';">Liên hệ với chúng tôi</a>';
+            $output .= esc_html($helpText) . ' <a href="' . esc_url($contactUrl) . '" style="color: ' . esc_attr($brandColor) . ';">' . esc_html($helpLinkText) . '</a>';
             $output .= '</div>';
         }
 
@@ -139,15 +156,16 @@ class RegisterFormBlock
         return $output;
     }
 
-    protected function renderLoggedInState(string $brandColor): string
+    protected function renderLoggedInState(string $brandColor, string $loggedInMessage, string $loggedInButtonText): string
     {
         $output = '<div class="jankx-register-form-wrapper">';
         $output .= '<div class="jankx-logged-in-message">';
-        $output .= '<p>Bạn đã đăng nhập.</p>';
+        $output .= '<p>' . esc_html($loggedInMessage) . '</p>';
         $output .= sprintf(
-            '<a href="%s" class="jankx-btn jankx-btn-primary" style="background: %s;">Vào trang quản trị</a>',
+            '<a href="%s" class="jankx-btn jankx-btn-primary" style="background: %s;">%s</a>',
             esc_url(admin_url()),
-            esc_attr($brandColor)
+            esc_attr($brandColor),
+            esc_html($loggedInButtonText)
         );
         $output .= '</div>';
         $output .= '</div>';

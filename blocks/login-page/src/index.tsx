@@ -1,6 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, InnerBlocks, MediaUpload, MediaUploadCheck } from '@wordpress/block-editor';
-import { Button, TextControl, ToggleControl, PanelBody, SelectControl, ColorPicker } from '@wordpress/components';
+import { useBlockProps, InnerBlocks, MediaUpload, MediaUploadCheck, InspectorControls } from '@wordpress/block-editor';
+import { Button, TextControl, PanelBody, SelectControl, ColorPicker } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import metadata from '../block.json';
 
@@ -30,29 +30,7 @@ function Edit({ attributes, setAttributes }) {
 
     return (
         <div {...blockProps}>
-            <div className="jankx-login-page-editor-preview">
-                <div className="jankx-editor-bg-preview" style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : {}}>
-                    <div className="jankx-editor-bg-overlay"></div>
-                </div>
-                <div className="jankx-editor-form-preview">
-                    <div className="jankx-editor-brand">
-                        <span style={{ color: brandColor }}>{brandName || 'NOBITOUR'}</span>
-                    </div>
-                    {pageType === 'login' ? (
-                        <div className="jankx-editor-form-placeholder">
-                            <h3>Đăng nhập</h3>
-                            <p>Form login sẽ hiển thị ở đây</p>
-                        </div>
-                    ) : (
-                        <div className="jankx-editor-form-placeholder">
-                            <h3>Đăng ký</h3>
-                            <p>Form register sẽ hiển thị ở đây</p>
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            <div className="jankx-editor-controls">
+            <InspectorControls>
                 <PanelBody title={__('Settings', 'jankx')} initialOpen={true}>
                     <SelectControl
                         label={__('Page Type', 'jankx')}
@@ -106,6 +84,28 @@ function Edit({ attributes, setAttributes }) {
                         </Button>
                     )}
                 </PanelBody>
+            </InspectorControls>
+
+            <div className="jankx-login-page-editor-preview">
+                <div className="jankx-editor-bg-preview" style={backgroundImage ? { backgroundImage: `url(${backgroundImage})` } : {}}>
+                    <div className="jankx-editor-bg-overlay"></div>
+                </div>
+                <div className="jankx-editor-form-preview">
+                    <div className="jankx-editor-brand">
+                        <span style={{ color: brandColor }}>{brandName || 'NOBITOUR'}</span>
+                    </div>
+                    {pageType === 'login' ? (
+                        <div className="jankx-editor-form-placeholder">
+                            <h3>Đăng nhập</h3>
+                            <p>Form login sẽ hiển thị ở đây</p>
+                        </div>
+                    ) : (
+                        <div className="jankx-editor-form-placeholder">
+                            <h3>Đăng ký</h3>
+                            <p>Form register sẽ hiển thị ở đây</p>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );

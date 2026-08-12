@@ -46,6 +46,74 @@
         "redirectUrl": {
             "type": "string",
             "default": ""
+        },
+        "loginTitle": {
+            "type": "string",
+            "default": "Đăng nhập"
+        },
+        "loginSubtitle": {
+            "type": "string",
+            "default": "Không có tài khoản? "
+        },
+        "loginSubtitleLinkText": {
+            "type": "string",
+            "default": "Tạo tài khoản"
+        },
+        "loginButtonText": {
+            "type": "string",
+            "default": "Đăng nhập"
+        },
+        "emailLabel": {
+            "type": "string",
+            "default": "Email/Tài khoản"
+        },
+        "emailPlaceholder": {
+            "type": "string",
+            "default": "Nhập email hoặc số điện thoại"
+        },
+        "passwordLabel": {
+            "type": "string",
+            "default": "Mật khẩu"
+        },
+        "passwordPlaceholder": {
+            "type": "string",
+            "default": "Nhập mật khẩu"
+        },
+        "rememberMeLabel": {
+            "type": "string",
+            "default": "Duy trì đăng nhập"
+        },
+        "forgotPasswordLabel": {
+            "type": "string",
+            "default": "Quên mật khẩu"
+        },
+        "socialDividerText": {
+            "type": "string",
+            "default": "Hoặc"
+        },
+        "facebookButtonText": {
+            "type": "string",
+            "default": "Đăng nhập nhanh với Facebook"
+        },
+        "googleButtonText": {
+            "type": "string",
+            "default": "Đăng nhập nhanh với Google"
+        },
+        "helpText": {
+            "type": "string",
+            "default": "Cần giúp đỡ? "
+        },
+        "helpLinkText": {
+            "type": "string",
+            "default": "Liên hệ với chúng tôi"
+        },
+        "loggedInMessage": {
+            "type": "string",
+            "default": "Bạn đã đăng nhập."
+        },
+        "loggedInButtonText": {
+            "type": "string",
+            "default": "Về trang chủ"
         }
     },
     "supports": {

@@ -34,6 +34,86 @@
         "contactUrl": {
             "type": "string",
             "default": ""
+        },
+        "registerTitle": {
+            "type": "string",
+            "default": "Đăng ký"
+        },
+        "registerSubtitle": {
+            "type": "string",
+            "default": "Bạn đã có tài khoản? "
+        },
+        "registerSubtitleLinkText": {
+            "type": "string",
+            "default": "Đăng nhập"
+        },
+        "registerButtonText": {
+            "type": "string",
+            "default": "Đăng ký"
+        },
+        "nameLabel": {
+            "type": "string",
+            "default": "Họ và tên"
+        },
+        "namePlaceholder": {
+            "type": "string",
+            "default": "Nhập họ tên"
+        },
+        "emailLabel": {
+            "type": "string",
+            "default": "Email"
+        },
+        "emailPlaceholder": {
+            "type": "string",
+            "default": "Nhập địa chỉ email"
+        },
+        "phoneLabel": {
+            "type": "string",
+            "default": "Số điện thoại"
+        },
+        "phonePlaceholder": {
+            "type": "string",
+            "default": "Nhập số điện thoại"
+        },
+        "passwordLabel": {
+            "type": "string",
+            "default": "Mật khẩu"
+        },
+        "passwordPlaceholder": {
+            "type": "string",
+            "default": "Nhập mật khẩu"
+        },
+        "confirmPasswordLabel": {
+            "type": "string",
+            "default": "Nhập lại mật khẩu"
+        },
+        "confirmPasswordPlaceholder": {
+            "type": "string",
+            "default": "Nhập lại mật khẩu"
+        },
+        "termsText": {
+            "type": "string",
+            "default": "Tôi đã đọc và đồng ý với "
+        },
+        "termsLinkText": {
+            "type": "string",
+            "default": "điều khoản dịch vụ"
+        },
+        "helpText": {
+            "type": "string",
+            "default": "Cần giúp đỡ? "
+        },
+        "helpLinkText": {
+            "type": "string",
+            "default": "Liên hệ với chúng tôi"
+        },
+        "loggedInMessage": {
+            "type": "string",
+            "default": "Bạn đã đăng nhập."
+        },
+        "loggedInButtonText": {
+            "type": "string",
+            "default": "Vào trang quản trị"
         }
     },
     "supports": {
