@@ -2,6 +2,7 @@
 namespace Jankx\Extensions\CustomLoginPage\Blocks;
 
 use Jankx\Extensions\CustomLoginPage\SocialLogin;
+use Jankx\Facades\Option;
 
 class LoginFormBlock
 {
@@ -176,6 +177,11 @@ class LoginFormBlock
 
     protected function renderLoggedInState(string $brandColor, string $loggedInMessage, string $loggedInButtonText): string
     {
+        if (Option::get('logged_in_redirect', true)) {
+            wp_safe_redirect(site_url());
+            exit();
+        }
+
         $output = '<div class="jankx-login-form-wrapper">';
         $output .= '<div class="jankx-logged-in-message">';
         $output .= '<p>' . esc_html($loggedInMessage) . '</p>';
