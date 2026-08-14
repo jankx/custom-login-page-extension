@@ -177,7 +177,7 @@ class LoginFormBlock
 
     protected function renderLoggedInState(string $brandColor, string $loggedInMessage, string $loggedInButtonText): string
     {
-        if (Option::get('logged_in_redirect', true)) {
+        if (Option::get('logged_in_redirect', true) && !defined('REST_REQUEST')) {
             wp_safe_redirect(site_url());
             exit();
         }
