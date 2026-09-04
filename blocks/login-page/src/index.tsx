@@ -3,6 +3,7 @@ import { useBlockProps, InnerBlocks, MediaUpload, MediaUploadCheck, InspectorCon
 import { Button, TextControl, PanelBody, SelectControl, ColorPicker } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import metadata from '../block.json';
+import './style.scss';
 
 function Save({ attributes }) {
     const blockProps = useBlockProps.save({

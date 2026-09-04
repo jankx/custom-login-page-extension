@@ -4,8 +4,11 @@
     "title": "Register Form",
     "category": "jankx",
     "icon": "forms",
-    "editorScript": "file:./build/index.tsx.js",
-    "parent": ["jankx/login-page"],
+    "editorScript": "file:./build/index.js",
+    "style": "file:./build/style-index.css",
+    "parent": [
+        "jankx/login-page"
+    ],
     "attributes": {
         "brandName": {
             "type": "string",

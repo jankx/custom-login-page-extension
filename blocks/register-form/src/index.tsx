@@ -3,6 +3,7 @@ import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
 import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 import metadata from '../block.json';
+import './style.scss';
 
 function Edit({ attributes, setAttributes }) {
     const blockProps = useBlockProps({

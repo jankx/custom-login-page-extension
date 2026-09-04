@@ -4,7 +4,8 @@
     "title": "Login Page",
     "category": "jankx",
     "icon": "lock",
-    "editorScript": "file:./build/index.tsx.js",
+    "editorScript": "file:./build/index.js",
+    "style": "file:./build/style-index.css",
     "attributes": {
         "backgroundImage": {
             "type": "string",
@@ -17,7 +18,10 @@
         "pageType": {
             "type": "string",
             "default": "login",
-            "enum": ["login", "register"]
+            "enum": [
+                "login",
+                "register"
+            ]
         },
         "brandName": {
             "type": "string",
@@ -30,15 +34,12 @@
     },
     "supports": {
         "html": false,
-        "align": ["full"],
+        "align": [
+            "full"
+        ],
         "spacing": {
             "margin": true,
             "padding": true
         }
-    },
-    "editorStyles": [
-        {
-            "src": "file:./build/style.css"
-        }
-    ]
+    }
 }

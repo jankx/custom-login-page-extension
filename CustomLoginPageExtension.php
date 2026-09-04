@@ -57,7 +57,6 @@ class CustomLoginPageExtension extends AbstractExtension
         }
 
         add_action('init', [$this, 'registerBlocks']);
-        add_action('enqueue_block_assets', [$this, 'enqueueBlockAssets']);
 
         // Auto create pages on activation
         add_action('admin_init', [$this, 'maybeCreatePages']);
@@ -194,20 +193,5 @@ class CustomLoginPageExtension extends AbstractExtension
             $block->boot();
             $block->register();
         }
-    }
-
-    public function enqueueBlockAssets(): void
-    {
-        $extension = CustomLoginPageExtension::get_instance();
-        if (!$extension) {
-            return;
-        }
-
-        wp_enqueue_style(
-            'jankx-login-blocks',
-            $extension->get_extension_url() . '/blocks/login-page/build/style.css',
-            [],
-            '1.0.0'
-        );
     }
 }
