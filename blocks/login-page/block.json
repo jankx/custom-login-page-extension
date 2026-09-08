@@ -5,7 +5,11 @@
     "category": "jankx",
     "icon": "lock",
     "editorScript": "file:./build/index.js",
-    "style": "file:./build/style-index.css",
+    "script": "file:../../assets/frontend.js",
+    "style": [
+        "file:./build/style-index.css",
+        "file:../../assets/frontend.css"
+    ],
     "attributes": {
         "backgroundImage": {
             "type": "string",

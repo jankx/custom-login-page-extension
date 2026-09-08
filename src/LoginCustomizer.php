@@ -7,14 +7,11 @@ class LoginCustomizer
 
     public function register(): void
     {
-        add_action('login_enqueue_scripts', [$this, 'enqueueAssets'], 5);
         add_action('login_head', [$this, 'addCustomStyles'], 99);
         add_filter('login_headerurl', [$this, 'setLogoUrl']);
         add_filter('login_headertext', [$this, 'setLogoTitle']);
         add_filter('login_title', [$this, 'setLoginPageTitle']);
         add_action('login_footer', [$this, 'renderCustomFooter']);
-
-        add_action('wp_enqueue_scripts', [$this, 'enqueueFrontendAssets']);
 
         // Redirect wp-login.php to custom login page
         add_action('init', [$this, 'redirectLoginPage']);
@@ -22,52 +19,6 @@ class LoginCustomizer
         // Override login/register URLs site-wide
         add_filter('login_url', [$this, 'filterLoginUrl'], 10, 2);
         add_filter('registration_url', [$this, 'filterRegistrationUrl']);
-    }
-
-    public function enqueueAssets(): void
-    {
-        $extension = CustomLoginPageExtension::get_instance();
-        if (!$extension) {
-            return;
-        }
-
-        wp_enqueue_style(
-            'jankx-custom-login',
-            $extension->get_extension_url() . '/assets/login.css',
-            [],
-            '1.0.0'
-        );
-
-        $logoUrl = $this->getLogoUrl();
-        if ($logoUrl) {
-            wp_add_inline_style('jankx-custom-login', sprintf(
-                '.login h1 a { background-image: url("%s") !important; }',
-                esc_url($logoUrl)
-            ));
-        }
-    }
-
-    public function enqueueFrontendAssets(): void
-    {
-        $extension = CustomLoginPageExtension::get_instance();
-        if (!$extension) {
-            return;
-        }
-
-        wp_enqueue_style(
-            'jankx-login-frontend',
-            $extension->get_extension_url() . '/assets/frontend.css',
-            [],
-            '1.0.0'
-        );
-
-        wp_enqueue_script(
-            'jankx-login-frontend',
-            $extension->get_extension_url() . '/assets/frontend.js',
-            [],
-            '1.0.0',
-            true
-        );
     }
 
     public function redirectLoginPage(): void

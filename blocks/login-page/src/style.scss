@@ -1,7 +1,7 @@
 /* Login Page Block Styles */
 .jankx-login-page-wrapper {
     position: relative;
-    min-height: 100vh;
+    overflow: hidden;
     display: flex;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
@@ -32,6 +32,8 @@
     display: flex;
     justify-content: flex-end;
     z-index: 1;
+    height: 100vh;
+    max-height: 100vh;
 }
 
 .jankx-login-page-form-area {
@@ -43,7 +45,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100vh;
+    overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .jankx-login-page-brand {
@@ -343,7 +346,9 @@
         width: 100%;
         min-width: auto;
         max-width: none;
-        min-height: auto;
+        height: auto;
+        max-height: none;
+        overflow-y: visible;
         padding: 32px 24px;
     }
 }

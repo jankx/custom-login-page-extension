@@ -18,7 +18,7 @@ class SettingsPage
     public function addMenu(): void
     {
         add_submenu_page(
-            'jankx-theme-options',
+            'jankx-dashboard',
             __('Custom Login Page', 'jankx'),
             __('Login Page', 'jankx'),
             'manage_options',
@@ -31,32 +31,44 @@ class SettingsPage
     {
         register_setting(self::OPTION_GROUP, 'jankx_login_logo_url', [
             'default' => '',
-            'sanitize_callback' => 'esc_url_raw',
+            'sanitize_callback' => function ($value) {
+                return is_null($value) ? '' : esc_url_raw($value);
+            },
         ]);
 
         register_setting(self::OPTION_GROUP, 'jankx_login_primary_color', [
             'default' => '#65A30D',
-            'sanitize_callback' => 'sanitize_hex_color',
+            'sanitize_callback' => function ($value) {
+                return is_null($value) ? '#65A30D' : sanitize_hex_color($value);
+            },
         ]);
 
         register_setting(self::OPTION_GROUP, 'jankx_login_bg_color', [
             'default' => '#FFFEF5',
-            'sanitize_callback' => 'sanitize_hex_color',
+            'sanitize_callback' => function ($value) {
+                return is_null($value) ? '#FFFEF5' : sanitize_hex_color($value);
+            },
         ]);
 
         register_setting(self::OPTION_GROUP, 'jankx_login_text_color', [
             'default' => '#1A1F71',
-            'sanitize_callback' => 'sanitize_hex_color',
+            'sanitize_callback' => function ($value) {
+                return is_null($value) ? '#1A1F71' : sanitize_hex_color($value);
+            },
         ]);
 
         register_setting(self::OPTION_GROUP, 'jankx_login_page_title', [
             'default' => '',
-            'sanitize_callback' => 'sanitize_text_field',
+            'sanitize_callback' => function ($value) {
+                return is_null($value) ? '' : sanitize_text_field($value);
+            },
         ]);
 
         register_setting(self::OPTION_GROUP, 'jankx_login_footer_text', [
             'default' => '',
-            'sanitize_callback' => 'wp_kses_post',
+            'sanitize_callback' => function ($value) {
+                return is_null($value) ? '' : wp_kses_post($value);
+            },
         ]);
 
         register_setting(self::OPTION_GROUP, 'jankx_custom_login_page', [
@@ -97,6 +109,11 @@ class SettingsPage
 
         register_setting(self::OPTION_GROUP, 'jankx_social_enable_google', [
             'default' => 0,
+            'sanitize_callback' => 'absint',
+        ]);
+
+        register_setting(self::OPTION_GROUP, 'jankx_logged_in_redirect', [
+            'default' => 1,
             'sanitize_callback' => 'absint',
         ]);
     }
@@ -211,6 +228,20 @@ class SettingsPage
                             ]);
                             ?>
                             <p class="description"><?php esc_html_e('Chọn trang hiển thị form đăng ký.', 'jankx'); ?></p>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th scope="row">
+                            <label for="jankx_logged_in_redirect"><?php esc_html_e('Redirect When Logged In', 'jankx'); ?></label>
+                        </th>
+                        <td>
+                            <input type="checkbox"
+                                   id="jankx_logged_in_redirect"
+                                   name="jankx_logged_in_redirect"
+                                   value="1"
+                                   <?php checked(get_option('jankx_logged_in_redirect', 1), 1); ?>>
+                            <p class="description"><?php esc_html_e('Tự động chuyển hướng về trang chủ khi người dùng đã đăng nhập truy cập trang login/register.', 'jankx'); ?></p>
                         </td>
                     </tr>
                 </table>
