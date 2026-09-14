@@ -32,6 +32,8 @@ class LoginPageBlock
     public function render($attributes, $content = '', $block = null)
     {
         $bgImage = $attributes['backgroundImage'] ?? '';
+        $bgSize = $attributes['backgroundSize'] ?? 'cover';
+        $bgPosition = $attributes['backgroundPosition'] ?? 'center center';
         $pageType = $attributes['pageType'] ?? 'login';
         $brandName = $attributes['brandName'] ?? 'NOBITOUR';
         $brandColor = $attributes['brandColor'] ?? '#65A30D';
@@ -43,7 +45,12 @@ class LoginPageBlock
 
         $bgStyle = '';
         if ($bgImage) {
-            $bgStyle = sprintf('background-image: url("%s");', esc_url($bgImage));
+            $bgStyle = sprintf(
+                'background-image: url("%s"); background-size: %s; background-position: %s;',
+                esc_url($bgImage),
+                esc_attr($bgSize),
+                esc_attr($bgPosition)
+            );
         }
 
         $output = sprintf('<div %s>', $wrapperAttrs);
